@@ -20,6 +20,7 @@ public class person {
 	public int getGroupID() {
 		return groupID;
 	}
+	
 	public void setGroupID(int groupID) {
 		this.groupID = groupID;
 	}
