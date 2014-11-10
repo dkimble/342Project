@@ -10,7 +10,7 @@ public class carPoolGroup {
 	public carPoolGroup(int maxCapacity){
 		this.groupID = 1;
 		this.maxCapacity = maxCapacity;
-		this.curCapacity = 5;
+		this.curCapacity = 8;
 	}
 
 	public int getMaxCapacity() {
