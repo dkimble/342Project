@@ -28,6 +28,12 @@ public class carPoolManager {
 		   return newGroup;
 	   }
 	   
+	   public person promptUserForContactInfo(){
+		   person newPerson = new person("","",5);
+		   
+		   return newPerson;
+	   }
+	   
 	   
 	   public void removeGroup(carPoolGroup groupToRemove){
 		   this.groupList.removeFirstOccurrence(groupToRemove);
