@@ -2,15 +2,17 @@ import java.util.LinkedList;
 
 
 public class carPoolGroup {
-	private int groupID;
+	private static int count = 1; //used to generate group id's
+	private int groupID;	
 	private int maxCapacity;
 	private int curCapacity;
 	private LinkedList<person> riderList;
 	
 	public carPoolGroup(int maxCapacity){
-		this.groupID = 1;
+		this.groupID = carPoolGroup.count;
+		carPoolGroup.count++;
 		this.maxCapacity = maxCapacity;
-		this.curCapacity = 10;
+		this.curCapacity = 0;
 	}
 
 	public int getMaxCapacity() {
@@ -32,21 +34,16 @@ public class carPoolGroup {
 		return groupID;
 	}
 
-	public void setGroupID(int groupID) {
-		this.groupID = groupID;
-	}
-
 	public LinkedList<person> getRiderList() {
 		return riderList;
 	}
 	
 	public void addPerson(person newPerson){
 		this.riderList.add(newPerson);
-		this.updateSchedule();
-		
+		this.updateSchedule();	
 	}
 	
 	public void updateSchedule(){
-		
+		//updates the driving schedule
 	}
 }
