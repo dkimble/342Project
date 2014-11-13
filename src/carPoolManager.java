@@ -6,6 +6,7 @@ public class carPoolManager {
 	   private static carPoolManager instance = null;
 	   private eventCreator eventManager;
 	   private LinkedList<carPoolGroup> groupList;
+	   
 	   protected carPoolManager() {
 	      // Exists only to defeat instantiation.
 	   }
@@ -24,11 +25,12 @@ public class carPoolManager {
 		   newGroup.addPerson(initiator);
 		   eventManager.addGroup(newGroup);
 		   
-		   
 		   return newGroup;
 	   }
-	   public void removeGroup(int groupID){
-		   //removes group from carpool list
+	   
+	   
+	   public void removeGroup(carPoolGroup groupToRemove){
+		   this.groupList.removeFirstOccurrence(groupToRemove);
 	   }
 	   
 	   
