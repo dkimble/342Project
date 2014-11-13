@@ -4,7 +4,7 @@ import java.util.LinkedList;
 public class carPoolManager {
 	   
 	   private static carPoolManager instance = null;
-	   private eventCreator eventManager;
+	   private EventManager eventManager;
 	   private LinkedList<carPoolGroup> groupList;
 	   
 	   protected carPoolManager() {
@@ -14,7 +14,7 @@ public class carPoolManager {
 	   public static carPoolManager getInstance() {
 	      if(instance == null) {
 	         instance = new carPoolManager();
-	         instance.eventManager = new eventCreator(); //associates a new event creator with the class
+	         instance.eventManager = new EventManager(); //associates a new event creator with the class
 	         instance.groupList = new LinkedList<carPoolGroup>(); 
 	      }
 	      return instance;
@@ -23,7 +23,7 @@ public class carPoolManager {
 	   public carPoolGroup createNewCarpoolGroup(person initiator, int maxCapacity){
 		   carPoolGroup newGroup = new carPoolGroup(maxCapacity);
 		   newGroup.addPerson(initiator);
-		   eventManager.addGroup(newGroup);
+		   eventManager.registerObserver(newGroup);
 		   
 		   return newGroup;
 	   }

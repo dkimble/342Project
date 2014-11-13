@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 
 
-public class carPoolGroup {
+public class carPoolGroup implements Observer {
 	private static int count = 1; //used to generate group id's
 	private int groupID;	
 	private int maxCapacity;
@@ -41,6 +41,11 @@ public class carPoolGroup {
 	public void addPerson(person newPerson){
 		this.riderList.add(newPerson);
 		this.updateSchedule();	
+	}
+	
+	public void update(CarPoolEvent e)
+	{
+		
 	}
 	
 	public void updateSchedule(){
