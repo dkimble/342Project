@@ -6,7 +6,7 @@ public class riderShareProgram {
 	public static void main(String[] args) {
 		
 		//create one and only carpool manager
-		carPoolManager carpoolManager = carPoolManager.getInstance();
+		carPoolManager CPManager = carPoolManager.getInstance();
 		EventManager eventManager = new EventManager();
 		
 		System.out.print("\n******* Welcome to the University RideShare Program *******");
@@ -28,8 +28,10 @@ public class riderShareProgram {
     	   switch (selection){
     		   
     	   		case 1:
-    	   				System.out.print("");
-    	   				//carpoolManager.createNewCarpoolGroup(newPerson, initCapacity);
+    	   				person newPerson = CPManager.promptUserForPersonInfo();
+    	   				System.out.print("\nHow many people can fit in your car?: ");
+    	   				int initCapacity = in.nextInt();
+    	   				CPManager.createNewCarpoolGroup(newPerson, initCapacity);
     	   			
     	   			
     	   		case 2:

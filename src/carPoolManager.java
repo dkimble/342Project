@@ -1,5 +1,7 @@
 import java.util.LinkedList;
+import java.util.Scanner;
 
+@SuppressWarnings("unused")
 
 public class carPoolManager {
 	   
@@ -20,16 +22,27 @@ public class carPoolManager {
 	      return instance;
 	   }
 	
-	   public carPoolGroup createNewCarpoolGroup(person initiator, int maxCapacity){
+	   public void createNewCarpoolGroup(person initiator, int maxCapacity){
 		   carPoolGroup newGroup = new carPoolGroup(maxCapacity);
 		   newGroup.addPerson(initiator);
 		   eventManager.registerObserver(newGroup);
 		   
-		   return newGroup;
 	   }
 	   
-	   public person promptUserForContactInfo(){
-		   person newPerson = new person("","",5);
+	   public person promptUserForPersonInfo(){
+		   String name;
+		   String phoneNumber;
+		   int distFromSchool;
+		   
+		   Scanner in = new Scanner(System.in);
+		   System.out.print("\nPlease enter your name: ");
+		   name = in.nextLine();
+		   System.out.print("\nPlease enter your phone number: ");
+		   phoneNumber = in.nextLine();		  
+		   System.out.print("\nHow many miles do you live from school?: ");
+		   distFromSchool = in.nextInt();
+		   
+		   person newPerson = new person(name,phoneNumber,distFromSchool);
 		   
 		   return newPerson;
 	   }
