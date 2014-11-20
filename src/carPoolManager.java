@@ -22,11 +22,11 @@ public class carPoolManager {
 	      return instance;
 	   }
 	
-	   public void createNewCarpoolGroup(person initiator, int maxCapacity){
+	   public carPoolGroup createNewCarpoolGroup(person initiator, int maxCapacity){
 		   carPoolGroup newGroup = new carPoolGroup(maxCapacity);
 		   newGroup.addPerson(initiator);
 		   eventManager.registerObserver(newGroup);
-		   
+		   return newGroup;
 	   }
 	   
 	   public person promptUserForPersonInfo(){
@@ -41,7 +41,7 @@ public class carPoolManager {
 		   phoneNumber = in.nextLine();		  
 		   System.out.print("\nHow many miles do you live from school?: ");
 		   distFromSchool = in.nextInt();
-		   
+		   in.close();
 		   person newPerson = new person(name,phoneNumber,distFromSchool);
 		   
 		   return newPerson;

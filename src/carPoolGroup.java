@@ -38,9 +38,17 @@ public class carPoolGroup implements Observer {
 		return riderList;
 	}
 	
-	public void addPerson(person newPerson){
-		this.riderList.add(newPerson);
-		this.updateSchedule();	
+	public boolean addPerson(person newPerson){
+		if(this.curCapacity < this.maxCapacity){
+			this.riderList.add(newPerson);
+			newPerson.setGroupID(this.groupID);
+			this.updateSchedule();	
+			this.curCapacity++;
+			return true; //person succefully added
+		}else{
+			return false;
+		}
+		
 	}
 	
 	public void update(CarPoolEvent e)
