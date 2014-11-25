@@ -9,6 +9,11 @@ import java.util.ArrayList;
  */
 public class EventManager implements Subject 
 {
+	
+	public EventManager(){
+		observers = new ArrayList<Observer>();
+	}
+	
 	/**
 	 * A collection of all observers watching for events
 	 */
