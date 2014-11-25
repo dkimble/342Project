@@ -9,17 +9,7 @@ public class riderShareProgram {
 		carPoolManager CPManager = carPoolManager.getInstance();
 		EventManager eventManager = new EventManager();
 		
-		System.out.print("\n******* Welcome to the University RideShare Program *******");
-		System.out.print("\n\nPlease select an operation:");
-		System.out.print("\n\t1) Create a new carpool group");
-		System.out.print("\n\t2) Add a rider to a group");
-		System.out.print("\n\t3) Remove a group");
-		System.out.print("\n\t4) Show all groups");
-		System.out.print("\n\t5) Show schedule of a group");
-		System.out.print("\n\t6) Show detailed group info");
-		System.out.print("\n\t7) Update contact info for a rider");
-		System.out.print("\n\t8) Exit");
-		System.out.printf("\n:");
+		riderShareProgram.printOptions();
   
        Scanner in = new Scanner(System.in);
 
@@ -31,11 +21,18 @@ public class riderShareProgram {
     	   		case 1:
     	   				person newPerson = CPManager.promptUserForPersonInfo();
     	   				System.out.print("\nMax people for this group?: ");
+    	   				//String test =in.nextLine(); //clears the newline character from stdin
     	   				int initCapacity = in.nextInt();
     	   				carPoolGroup newGroup = CPManager.createNewCarpoolGroup(newPerson, initCapacity);
     	   				System.out.printf("\nSuccess. Group ID: %d , Your ID: %d",newGroup.getGroupID(),newPerson.getPersonID() );
+    	   				break;
     	   			  			
     	   		case 2:
+    	   			if(CPManager.addUserToGroup()){
+    	   				System.out.print("\nSuccess.");
+    	   			}else{
+    	   				System.out.print("\nFailed: Group full or GroupID does not exist.");
+    	   			}
     	   			   
     	   				
     	   			
@@ -50,17 +47,29 @@ public class riderShareProgram {
     	   		case 7:
     	   		
     	   			
-    	   		System.out.printf("\n:");
+    	   		
     	   }//end switch statement
     	   
     	   
-    	   
+    	   riderShareProgram.printOptions(); 
        }//end while - exit program
 
 		
-	in.close();
+	in.close(); //close input stream
 		
 		
-	}
+	}//end main
 
+	public static void printOptions(){
+		System.out.print("\n\nPlease select an operation:");
+		System.out.print("\n\t1) Create a new carpool group");
+		System.out.print("\n\t2) Add a rider to a group");
+		System.out.print("\n\t3) Remove a group");
+		System.out.print("\n\t4) Show all groups");
+		System.out.print("\n\t5) Show schedule of a group");
+		System.out.print("\n\t6) Show detailed group info");
+		System.out.print("\n\t7) Update contact info for a rider");
+		System.out.print("\n\t8) Exit");
+		System.out.printf("\n:");
+	}
 }

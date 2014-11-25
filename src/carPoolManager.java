@@ -25,7 +25,8 @@ public class carPoolManager {
 	   public carPoolGroup createNewCarpoolGroup(person initiator, int maxCapacity){
 		   carPoolGroup newGroup = new carPoolGroup(maxCapacity);
 		   newGroup.addPerson(initiator);
-		   eventManager.registerObserver(newGroup);
+		   //eventManager.registerObserver(newGroup); doesn't work , NewGroup type does not match Observer type???
+		   groupList.add(newGroup);
 		   return newGroup;
 	   }
 	   
@@ -41,12 +42,39 @@ public class carPoolManager {
 		   phoneNumber = in.nextLine();		  
 		   System.out.print("\nHow many miles do you live from school?: ");
 		   distFromSchool = in.nextInt();
-		   in.close();
+		   in.nextLine(); //clear stdin
+		   //in.close();
 		   person newPerson = new person(name,phoneNumber,distFromSchool);
 		   
 		   return newPerson;
 	   }
 	   
+	   public boolean addUserToGroup(){
+		   Scanner in = new Scanner(System.in);
+		   System.out.printf("\nWhich Group would you like to join?");
+		   int groupID = in.nextInt();
+		   carPoolGroup cpGroup = getGroupByID(groupID);
+		   if(cpGroup != null){
+			   if(cpGroup.getCurCapacity() >= cpGroup.getMaxCapacity()){
+				   return false;
+			   }
+			   person newPerson = promptUserForPersonInfo();
+			   cpGroup.addPerson(newPerson);
+			   return true;
+		   }
+		   return false;
+	   }
+	   
+	   public carPoolGroup getGroupByID(int groupID){
+		    carPoolGroup cpGroup = null;
+			for(carPoolGroup G : groupList){
+				if ( G.getGroupID() == groupID){
+					cpGroup = G;
+					break;
+				}
+			}
+			return cpGroup;
+		}  
 	   
 	   public void removeGroup(carPoolGroup groupToRemove){
 		   this.groupList.removeFirstOccurrence(groupToRemove);

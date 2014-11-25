@@ -13,6 +13,7 @@ public class carPoolGroup implements Observer {
 		carPoolGroup.count++;
 		this.maxCapacity = maxCapacity;
 		this.curCapacity = 0;
+		this.riderList = new LinkedList<person>();
 	}
 
 	public int getMaxCapacity() {
@@ -50,6 +51,9 @@ public class carPoolGroup implements Observer {
 		}
 		
 	}
+	
+
+	
 	
 	public void update(CarPoolEvent e)
 	{
