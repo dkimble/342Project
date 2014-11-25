@@ -40,7 +40,7 @@ public class riderShareProgram {
     	   			
     	   		case 4:   
     	   			
-    	   		case 5:   
+    	   		case 5:  
     	   			
     	   		case 6:
     	   			

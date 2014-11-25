@@ -122,14 +122,19 @@ public class carPoolGroup implements Observer {
 			int travelTime = calculateTravelTime(maxDist-driverDist) + calculateTravelTime(maxDist) + delayTime;
 			
 			// Print out the driver and his travel time
-			System.out.print("Driver: " + riderList.getFirst().getName());
-			System.out.println("  Travel Time: " + travelTime + " Minutes");
+			System.out.print("Driver : " + riderList.getFirst().getName());
+			System.out.println(displayDepartureTime(travelTime));
 			
 			// Prints out the riders in the carpool
 			for(int i = 1; i<riderList.size(); i++)
 			{
-			System.out.println("Rider " + i + ": " + riderList.get(i).getName());
+				int passengerPickUpTime = calculateTravelTime(riderList.get(i).getDistFromSchool());
+				
+				System.out.print("Rider " + i + ": " + riderList.get(i).getName());
+				System.out.println(displayDepartureTime(passengerPickUpTime));
 			}
+			
+			System.out.print("\n\n");
 	}
 	
 	/**
@@ -165,5 +170,25 @@ public class carPoolGroup implements Observer {
 		int timeInMinutes = (int)(timeInHours * 60);
 		
 		return timeInMinutes;
+	}
+	
+	private static String displayDepartureTime(int travelTime)
+	{
+		int hours = 8;
+		int minutes = 60;
+		
+		int travelHours = travelTime / 60;
+		int travelMinutes = travelTime % 60;
+		
+		if(travelMinutes != 0)
+		{
+			minutes -= travelMinutes;
+		}
+		
+		hours -= travelHours;
+		
+		String time = "\tDeparture Time: " + hours + ":" + minutes + " A.M.";
+		
+		return time;
 	}
 }
