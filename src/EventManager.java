@@ -9,35 +9,35 @@ import java.util.ArrayList;
  */
 public class EventManager implements Subject 
 {
-	
+
 	public EventManager(){
 		observers = new ArrayList<Observer>();
 		events = new ArrayList<CarPoolEvent>();
 	}
-	
+
 	/**
 	 * A collection of all observers watching for events
 	 */
 	private ArrayList<Observer> observers;
-	
-	
+
+
 	/**
 	 * A collection of all events currently being handled by the manager
 	 */
 	private ArrayList<CarPoolEvent> events;
-	
-	
+
+
 	public void registerObserver(Observer o)
 	{
 		observers.add(o);
 	}
-	
+
 	public void removeObserver(Observer o)
 	{
 		if(!observers.remove(o));
-			System.err.println("Failed to remove observer");
+		System.err.println("Failed to remove observer");
 	}
-	
+
 	public void notifyObservers(CarPoolEvent e)
 	{
 		for(Observer o : observers)
@@ -45,7 +45,7 @@ public class EventManager implements Subject
 			o.update(e);
 		}
 	}
-	
+
 	/**
 	 * Adds a new event and notifies observers that it has been created
 	 * @param e The new event to be added
@@ -55,5 +55,5 @@ public class EventManager implements Subject
 		events.add(e);
 		notifyObservers(e);
 	}
-	
+
 }

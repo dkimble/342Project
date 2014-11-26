@@ -6,7 +6,7 @@
  * @version 1.0.0
  */
 public class TrafficEvent extends CarPoolEvent {
-	
+
 	public TrafficEvent(int delay)
 	{
 		setTimeDelay(delay);

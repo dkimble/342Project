@@ -6,7 +6,7 @@
  * @version 1.0.0
  */
 public class WeatherEvent extends CarPoolEvent {
-	
+
 	public WeatherEvent(int delay)
 	{
 		setTimeDelay(delay);

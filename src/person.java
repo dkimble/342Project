@@ -6,8 +6,8 @@ public class person {
 	private int groupID;
 	private int personID;
 	private int distFromSchool;
-	
-	
+
+
 	public person(String name, String phoneNumber, int distanceFromSchool){
 		this.name = name;
 		this.phoneNumber = phoneNumber;
@@ -16,7 +16,7 @@ public class person {
 		this.personID = person.count;
 		person.count++;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -32,7 +32,7 @@ public class person {
 	public int getGroupID() {
 		return groupID;
 	}
-	
+
 	public void setGroupID(int groupID) {
 		this.groupID = groupID;
 	}
@@ -43,7 +43,7 @@ public class person {
 	public int getDistFromSchool() {
 		return distFromSchool;
 	}
-	
+
 	public void setDistFromSchool(int distFromSchool) {
 		this.distFromSchool = distFromSchool;
 	}

@@ -115,7 +115,7 @@ public class riderShareProgram {
 				while(eventType != 1 && eventType!= 2)
 				{
 					eventType = getInt("What type of event? \n\t1. Weather\n\t2. Traffic\n");
-					
+
 					if(eventType == 1 || eventType ==2)
 					{
 						CPManager.updateGroupsDueToEvent(eventType);
@@ -144,6 +144,7 @@ public class riderShareProgram {
 	//checks to make sure it is actually an integer
 	private static int getInt(String msg)
 	{
+		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
 		int result = -1;
 		boolean loop = true;
