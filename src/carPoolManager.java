@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -51,9 +52,8 @@ public class carPoolManager {
 		   name = in.nextLine();
 		   System.out.print("\nPlease enter your phone number: ");
 		   phoneNumber = in.nextLine();		  
-		   System.out.print("\nHow many miles do you live from school?: ");
-		   distFromSchool = in.nextInt();
-		   in.nextLine(); //removes any newline characters
+		   distFromSchool = getInt("\nHow many miles do you live from school?: ");
+		   //in.nextLine(); //removes any newline characters
 		   person newPerson = new person(name,phoneNumber,distFromSchool); //creates a new person based on user input 
 		   
 		   return newPerson;
@@ -64,9 +64,7 @@ public class carPoolManager {
 	   //returns TRUE if the user is added to the carpoolgroup specified by the GroupID
 	   //Returns FALSE if the Group cannot be found by GroupID, or the group is already full
 	   public boolean addUserToGroup(){
-		   Scanner in = new Scanner(System.in);
-		   System.out.printf("\nWhich Group (GroupID) would you like to join?");
-		   int groupID = in.nextInt();
+		   int groupID = getInt("\nWhich Group (GroupID) would you like to join?");
 		   carPoolGroup cpGroup = getGroupByID(groupID); //Get the carpoolGroup by GroupID
 		   if(cpGroup != null){
 			   if(cpGroup.getCurCapacity() >= cpGroup.getMaxCapacity()){
@@ -151,12 +149,13 @@ public class carPoolManager {
 		   name = in.nextLine();
 		   System.out.print("\nPlease enter your phone number: ");
 		   phoneNumber = in.nextLine();		  
-		   System.out.print("\nHow many miles do you live from school?: ");
-		   distFromSchool = in.nextInt();
+		   distFromSchool = getInt("\nHow many miles do you live from school?: ");
 		   
 		   personToUpdate.setName(name);
 		   personToUpdate.setPhoneNumber(phoneNumber);
 		   personToUpdate.setDistFromSchool(distFromSchool);
+		   
+		   return;
 	   }
 	   
 	   public void updateGroupsDueToEvent(int eventType){
@@ -166,4 +165,25 @@ public class carPoolManager {
 		   //updates only the specified group to respond to an event 
 		   //i.e. some person got sick and no longer needs to be picked up...or something
 	   }
+	   
+	   private int getInt(String msg)
+	    {
+	        Scanner in = new Scanner(System.in);
+	        int result = -1;
+	        boolean loop = true;
+	        while (loop) {
+	            try {
+	                System.out.printf(msg);
+	                result = in.nextInt();
+	                //in.nextLine(); //clears newline
+	                loop = false;
+	            } catch (InputMismatchException e) {
+	                System.out.println("ERROR: Expecting integer value.");
+	                in.next();
+	            }
+	        }
+
+	        return result;
+	    }   
+	   
 }

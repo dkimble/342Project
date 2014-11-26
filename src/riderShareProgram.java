@@ -1,4 +1,5 @@
 			
+import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -15,15 +16,13 @@ public class riderShareProgram {
        Scanner in = new Scanner(System.in);
 
        int selection = 0;
-       while( (selection = in.nextInt()) != 9){
+       while( (selection = in.nextInt()) !=  10){
     	   
     	   switch (selection){
     		   
     	   		case 1:
     	   				person newPerson = CPManager.promptUserForPersonInfo();
-    	   				System.out.print("\nMax people for this group? : ");
-    	   				//String test =in.nextLine(); //clears the newline character from stdin
-    	   				int initCapacity = in.nextInt();
+    	   				int initCapacity = getInt("\nMax people for this group? : ");
     	   				carPoolGroup newGroup = CPManager.createNewCarpoolGroup(newPerson, initCapacity);
     	   				System.out.printf("\nSuccess. Group ID: %d , Your RiderID: %d",newGroup.getGroupID(),newPerson.getPersonID() );
     	   				break;
@@ -39,8 +38,7 @@ public class riderShareProgram {
     	   			
     	   		case 3:
     	   			//the user wants to remove a group. Ask user which groupID to remove.
-    	   			System.out.print("Which GroupId would you like to remove? : ");
-    	   			int groupID = in.nextInt();	
+    	   			int groupID = getInt("Which GroupId would you like to remove? : ");
     	   			//removes carPoolGroup, if the ID exists
     	   			if(CPManager.removeGroup(groupID)){
     	   				System.out.printf("\nSuccess, GroupID = %d Removed.",groupID);
@@ -60,8 +58,7 @@ public class riderShareProgram {
     	   		case 5:  
     	   			
     	   		case 6: 
-    	   			System.out.printf("\nWhich Group do you want to see info for? : ");
-    	   			groupID = in.nextInt();
+    	   			groupID = getInt("\nWhich Group do you want to see info for? : ");
     	   			carPoolGroup cpg = CPManager.getGroupByID(groupID);
     	   			if(cpg != null){
     	   				System.out.printf("\nGroupID: %d ,Current Capacity = %d , Max Capacity = %d", cpg.getGroupID(),cpg.getCurCapacity(),cpg.getMaxCapacity());
@@ -77,8 +74,7 @@ public class riderShareProgram {
     	   			break;
     	   		
     	   		case 7:
-    	   			System.out.printf("\nWhat is your RiderID? :");
-    	   			int personID = in.nextInt();
+    	   			int personID = getInt("\nWhat is your RiderID? :");
     	   			person personRef = CPManager.getPersonById(personID);
     	   			if(personRef != null){
     	   				CPManager.updateRiderInfo(personRef);
@@ -88,8 +84,8 @@ public class riderShareProgram {
     	   			break;    	   			
     	   			
     	   		case 8:
-    	   			System.out.printf("\nWhat is the ID of the rider you'd like to see contact info for :");
-    	   			personID = in.nextInt();
+    	   			
+    	   			personID = getInt("\nWhat is the ID of the rider you'd like to see contact info for :");
     	   			personRef = CPManager.getPersonById(personID);
     	   			if(personRef != null){
     	   				System.out.printf("\n%s, %s",personRef.getName(),personRef.getPhoneNumber() );
@@ -97,6 +93,13 @@ public class riderShareProgram {
     	   				System.out.print("\nFailed: RiderID not found.");
     	   			}
     	   			break;
+    	   			
+    	   			
+    	   		case 9:
+    	   			LinkedList<person> Plist = CPManager.getGlobalPersonList();
+    	   			for(person p : Plist){
+    	   				System.out.printf("\n%s , RiderId = %d , GroupId = %d", p.getName(), p.getPersonID(),p.getGroupID());
+    	   			}
     	   		
     	   }//end switch statement
     	   
@@ -111,6 +114,27 @@ public class riderShareProgram {
 		
 	}//end main
 
+	//gets an integer value from the user
+	//checks to make sure it is actually an integer
+    private static int getInt(String msg)
+    {
+        Scanner in = new Scanner(System.in);
+        int result = -1;
+        boolean loop = true;
+        while (loop) {
+            try {
+                System.out.printf(msg);
+                result = in.nextInt();
+                loop = false;
+            } catch (InputMismatchException e) {
+                System.out.println("ERROR: Expecting integer value.");
+                in.next();
+            }
+        }
+
+        return result;
+    }
+	//method to display rider share program functions/options to the user
 	public static void printOptions(){
 		System.out.print("\n\nPlease select an operation:");
 		System.out.print("\n\t1) Create a new carpool group");
@@ -121,7 +145,8 @@ public class riderShareProgram {
 		System.out.print("\n\t6) Show detailed group info");
 		System.out.print("\n\t7) Update rider contact infor");
 		System.out.print("\n\t8) Get another rider's Contact info");
-		System.out.print("\n\t9) Exit");
+		System.out.print("\n\t9) Show all riders");
+		System.out.print("\n\t10) Exit");
 		System.out.printf("\n:");
 	}
 }
