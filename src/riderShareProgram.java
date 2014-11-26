@@ -56,8 +56,7 @@ public class riderShareProgram {
     	   			break;
     	   			
     	   		case 5:  
-    	   			System.out.print("Which group do you want the schedule for? : ");
-    	   			int scheduleGroupNumber = in.nextInt();
+    	   			int scheduleGroupNumber = getInt("Which group do you want the schedule for? : ");
     	   			carPoolGroup temp = CPManager.getGroupByID(scheduleGroupNumber);
     	   			if(temp == null)
     	   			{
