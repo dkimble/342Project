@@ -159,7 +159,11 @@ public class carPoolManager {
 	   }
 	   
 	   public void updateGroupsDueToEvent(int eventType){
-		   //loops through all groups and updates them accordingly
+		   int delay = getInt("How long is the delay? : ");
+			if(eventType == 1)
+				eventManager.newEvents(new WeatherEvent(delay));
+			else if(eventType == 2)
+				eventManager.newEvents(new TrafficEvent(delay));
 	   }
 	   public void updateGroupsDueToEvent(int eventType, int groupID){
 		   //updates only the specified group to respond to an event 

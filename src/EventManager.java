@@ -12,6 +12,7 @@ public class EventManager implements Subject
 	
 	public EventManager(){
 		observers = new ArrayList<Observer>();
+		events = new ArrayList<CarPoolEvent>();
 	}
 	
 	/**

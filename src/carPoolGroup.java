@@ -133,7 +133,7 @@ public class carPoolGroup implements Observer {
 			// Prints out the riders in the carpool
 			for(int i = 1; i<riderList.size(); i++)
 			{
-				int passengerPickUpTime = calculateTravelTime(riderList.get(i).getDistFromSchool());
+				int passengerPickUpTime = calculateTravelTime(riderList.get(i).getDistFromSchool()) + delayTime;
 				
 				System.out.print("Rider " + i + ": " + riderList.get(i).getName());
 				System.out.println(displayDepartureTime(passengerPickUpTime));
