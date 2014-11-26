@@ -3,6 +3,11 @@ import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+/**
+ * User interface for the ride share program
+ * @author Group 2
+ * @version 1.0.0
+ */
 public class riderShareProgram {
 
 	public static void main(String[] args) {
@@ -18,14 +23,16 @@ public class riderShareProgram {
 		while( (selection = in.nextInt()) !=  11){
 
 			switch (selection){
-
+			
+			// Create a new group
 			case 1:
 				person newPerson = CPManager.promptUserForPersonInfo();
 				int initCapacity = getInt("\nMax people for this group? : ");
 				carPoolGroup newGroup = CPManager.createNewCarpoolGroup(newPerson, initCapacity);
 				System.out.printf("\nSuccess. Group ID: %d , Your RiderID: %d",newGroup.getGroupID(),newPerson.getPersonID() );
 				break;
-
+			
+			// Add a person to an existing group
 			case 2:
 				if(CPManager.addUserToGroup()){
 					System.out.print("\nSuccess.");
@@ -34,7 +41,7 @@ public class riderShareProgram {
 				}
 				break;
 
-
+			// Remove a group
 			case 3:
 				//the user wants to remove a group. Ask user which groupID to remove.
 				int groupID = getInt("Which GroupId would you like to remove? : ");
@@ -46,14 +53,15 @@ public class riderShareProgram {
 				}
 				break;
 
-
-			case 4:  //List each group by ID, Displays Current Capacity and MaxCapacity  
+			//List each group by ID, Displays Current Capacity and MaxCapacity 
+			case 4:   
 				LinkedList<carPoolGroup> cpGList = CPManager.getGroupList();
 				for(carPoolGroup cpg : cpGList){
 					System.out.printf("\nGroupID: %d ,Current Capacity = %d , Max Capacity = %d", cpg.getGroupID(),cpg.getCurCapacity(),cpg.getMaxCapacity());
 				}
 				break;
 
+			//Display weekly schedule
 			case 5:  
 				int scheduleGroupNumber = getInt("Which group do you want the schedule for? : ");
 				carPoolGroup temp = CPManager.getGroupByID(scheduleGroupNumber);
@@ -66,6 +74,8 @@ public class riderShareProgram {
 					temp.displaySchedule();
 				}
 				break;
+				
+			// Display group info
 			case 6: 
 				groupID = getInt("\nWhich Group do you want to see info for? : ");
 				carPoolGroup cpg = CPManager.getGroupByID(groupID);
@@ -82,6 +92,7 @@ public class riderShareProgram {
 
 				break;
 
+			// Update rider info
 			case 7:
 				int personID = getInt("\nWhat is your RiderID? :");
 				person personRef = CPManager.getPersonById(personID);
@@ -92,8 +103,8 @@ public class riderShareProgram {
 				}
 				break;    	   			
 
+			// Get person info
 			case 8:
-
 				personID = getInt("\nWhat is the ID of the rider you'd like to see contact info for :");
 				personRef = CPManager.getPersonById(personID);
 				if(personRef != null){
@@ -103,13 +114,14 @@ public class riderShareProgram {
 				}
 				break;
 
-
+			// Display list of riders
 			case 9:
 				LinkedList<person> Plist = CPManager.getGlobalPersonList();
 				for(person p : Plist){
 					System.out.printf("\n%s , RiderId = %d , GroupId = %d", p.getName(), p.getPersonID(),p.getGroupID());
 				}
 				break;
+			// Create an event
 			case 10: 
 				int eventType = 0;
 				while(eventType != 1 && eventType!= 2)
@@ -140,8 +152,12 @@ public class riderShareProgram {
 
 	}//end main
 
-	//gets an integer value from the user
-	//checks to make sure it is actually an integer
+	
+	/**
+	 * Wrapper class to get an integer input from the user
+	 * @param msg The prompt to display to the user
+	 * @return The integer entered by the user
+	 */
 	private static int getInt(String msg)
 	{
 		@SuppressWarnings("resource")
@@ -161,7 +177,10 @@ public class riderShareProgram {
 
 		return result;
 	}
-	//method to display rider share program functions/options to the user
+	
+	/**
+	 * Display rider share program functions/options to the user
+	 */
 	public static void printOptions(){
 		System.out.print("\n\nPlease select an operation:");
 		System.out.print("\n\t1) Create a new carpool group");

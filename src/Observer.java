@@ -2,7 +2,7 @@
 /**
  * Interface to be implemented by any observers in the observer pattern
  * 
- * @author Matt
+ * @author Group 2
  * @version 1.0.0
  */
 public interface Observer {

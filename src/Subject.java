@@ -2,7 +2,7 @@
 /**
  * Interface for any subject in an Observer pattern
  * 
- * @author Matt
+ * @author Group 2
  * @version 1.0.0
  *
  */

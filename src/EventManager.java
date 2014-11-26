@@ -4,12 +4,15 @@ import java.util.ArrayList;
 /**
  * Handles newly created events and notifies CarPoolGroups of new events
  * 
- * @author Matt
+ * @author Group 2
  * @version 1.0.0
  */
 public class EventManager implements Subject 
 {
 
+	/**
+	 * Create a new event manager and initialize the observer and event lists
+	 */
 	public EventManager(){
 		observers = new ArrayList<Observer>();
 		events = new ArrayList<CarPoolEvent>();

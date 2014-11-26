@@ -1,9 +1,8 @@
 import java.util.LinkedList;
-
-
 /**
  * Controls the functionality of a carpool group
- *
+ * @author Group 2
+ * @version 1.0.0
  */
 public class carPoolGroup implements Observer {
 	/**
