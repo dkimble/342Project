@@ -114,12 +114,17 @@ public class carPoolGroup implements Observer {
 	 */
 	public void displaySchedule()
 	{
+			String[] daysOfWeek = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
 			
+			for(String day : daysOfWeek)
+			{
 			int maxDist = maxDistance(riderList);
 			int driverDist = riderList.getFirst().getDistFromSchool();
 			
 			// Driver should drive to the farthest person away then turn back towards school
 			int travelTime = calculateTravelTime(maxDist-driverDist) + calculateTravelTime(maxDist) + delayTime;
+			
+			System.out.println(day);
 			
 			// Print out the driver and his travel time
 			System.out.print("Driver : " + riderList.getFirst().getName());
@@ -135,6 +140,8 @@ public class carPoolGroup implements Observer {
 			}
 			
 			System.out.print("\n\n");
+			updateSchedule();
+			}
 	}
 	
 	/**
@@ -174,6 +181,7 @@ public class carPoolGroup implements Observer {
 	
 	private static String displayDepartureTime(int travelTime)
 	{
+		String time;
 		int hours = 8;
 		int minutes = 60;
 		
@@ -184,10 +192,21 @@ public class carPoolGroup implements Observer {
 		{
 			minutes -= travelMinutes;
 		}
+		else
+		{
+			hours++;
+			minutes = 0;
+		}
 		
 		hours -= travelHours;
-		
-		String time = "\tDeparture Time: " + hours + ":" + minutes + " A.M.";
+		if(minutes < 10)
+		{
+			time = "\tDeparture Time: " + hours + ":0" + minutes + " A.M.";
+		}
+		else
+		{
+			time = "\tDeparture Time: " + hours + ":" + minutes + " A.M.";
+		}
 		
 		return time;
 	}

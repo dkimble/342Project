@@ -58,7 +58,18 @@ public class riderShareProgram {
     	   			break;
     	   			
     	   		case 5:  
-    	   			
+    	   			System.out.print("Which group do you want the schedule for? : ");
+    	   			int scheduleGroupNumber = in.nextInt();
+    	   			carPoolGroup temp = CPManager.getGroupByID(scheduleGroupNumber);
+    	   			if(temp == null)
+    	   			{
+    	   				System.out.println("Group Not Found");
+    	   			}
+    	   			else
+    	   			{
+    	   				temp.displaySchedule();
+    	   			}
+    	   			break;
     	   		case 6: 
     	   			System.out.printf("\nWhich Group do you want to see info for? : ");
     	   			groupID = in.nextInt();
